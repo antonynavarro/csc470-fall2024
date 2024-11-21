@@ -15,7 +15,7 @@ public class UnitScript : MonoBehaviour
     public GameObject greenTarget;
     public GameObject ObjectiveTarget;
 
-    public UnityEngine.AI.NavMeshAgent agent;
+    //public UnityEngine.AI.NavMeshAgent agent;
 
     public Renderer bodyRenderer;
     public Color normalColor;

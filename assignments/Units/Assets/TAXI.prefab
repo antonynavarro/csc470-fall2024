@@ -9,12 +9,10 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 3794764013215134945}
-  - component: {fileID: 1370738738011630843}
   - component: {fileID: 2883924366103317281}
-  - component: {fileID: 7333239597724155690}
   - component: {fileID: 5253280463930533649}
   - component: {fileID: 3092393115817490167}
-  - component: {fileID: 6516680115227261401}
+  - component: {fileID: 4933575753699273064}
   m_Layer: 0
   m_Name: TAXI
   m_TagString: unit
@@ -38,30 +36,6 @@ Transform:
   - {fileID: 3741361698842527736}
   m_Father: {fileID: 0}
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
---- !u!114 &1370738738011630843
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7127222348421110801}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: fc12e6ff8b3fc47aca635ea6110c9107, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  character: {fileID: 0}
-  unitName: Louis
-  mission: 
-  mood: 
-  reward: 0
-  greenTarget: {fileID: 0}
-  ObjectiveTarget: {fileID: 0}
-  agent: {fileID: 2883924366103317281}
-  bodyRenderer: {fileID: 0}
-  normalColor: {r: 0.14509805, g: 0.8156863, b: 0.79607844, a: 0}
-  selectedColor: {r: 1, g: 0.5147939, b: 0.2688679, a: 0}
-  selected: 0
 --- !u!195 &2883924366103317281
 NavMeshAgent:
   m_ObjectHideFlags: 0
@@ -84,20 +58,6 @@ NavMeshAgent:
   m_BaseOffset: 0
   m_WalkableMask: 4294967295
   m_ObstacleAvoidanceType: 4
---- !u!114 &7333239597724155690
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 7127222348421110801}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 0987f6c8213e11f4aac305c0cd9ae84d, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  mainCamera: {fileID: 0}
-  agent: {fileID: 0}
 --- !u!65 &5253280463930533649
 BoxCollider:
   m_ObjectHideFlags: 0
@@ -146,7 +106,7 @@ Rigidbody:
   m_Interpolate: 0
   m_Constraints: 0
   m_CollisionDetection: 0
---- !u!114 &6516680115227261401
+--- !u!114 &4933575753699273064
 MonoBehaviour:
   m_ObjectHideFlags: 0
   m_CorrespondingSourceObject: {fileID: 0}
@@ -158,10 +118,11 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 387a559e1f43e7349bf1eaa0bd8e2bfc, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  carName: TAXI
-  price: 0
-  isPurchased: 1
-  carModel: {fileID: 0}
+  carName: Taxi
+  carPrice: 0
+  isBought: 1
+  agent: {fileID: 0}
+  selected: 0
 --- !u!1001 &3774374761115656211
 PrefabInstance:
   m_ObjectHideFlags: 0

@@ -4,7 +4,9 @@ using UnityEngine;
 
 public class CameraFollow : MonoBehaviour
 {
-    public Transform car;          // Assign your car's transform here
+
+    private Transform currentTarget; // The current car being followed
+
     public Vector3 offset;         // Set an offset to position the camera correctly
     public float scrollSensitivity = 10f; // Sensitivity for adjusting the camera height
     public float minHeight = 30f;  // Minimum camera height
@@ -27,6 +29,15 @@ public class CameraFollow : MonoBehaviour
 
     private void LateUpdate()
     {
+        // Get the currently active car from the CarManager
+        if (CarManager.instance.selectedCar != null)
+        {
+            currentTarget = CarManager.instance.selectedCar.transform;
+        }
+
+        // If there is no active car, return early
+        if (currentTarget == null)
+            return;
         // Get the scroll input
         float scroll = Input.GetAxis("Mouse ScrollWheel");
 
@@ -41,7 +52,7 @@ public class CameraFollow : MonoBehaviour
         //offset.z = Mathf.Lerp(offset.y, targetZoom, smoothSpeed);
 
         // Set the camera's position based on the car's position and the offset
-        transform.position = car.position + offset;
+        transform.position = currentTarget.position + offset;
 
         // Set the camera to look at the car
         transform.rotation = Quaternion.Euler(80, 180, 0); // Adjust the rotation as needed

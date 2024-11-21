@@ -1,151 +1,153 @@
 using System.Collections;
 using System.Collections.Generic;
-using TMPro;
 using UnityEngine;
-using UnityEngine.EventSystems;
 using UnityEngine.UI;
+using TMPro;
+using System;
+using UnityEngine.EventSystems;
 
 public class CarManager : MonoBehaviour
 {
+    public static Action<CarScript> CarClicked;
+
+    public static CarManager instance;
 
     public Camera mainCamera;
 
+    public CarScript selectedCar;
+
     public List<CarScript> cars = new List<CarScript>();
-    public CarScript activeCar;
 
-    public GameObject carInfoWindow;
-    public TMP_Text carNameText;
-    public TMP_Text carPriceText;
+    public GameObject CarpopUpWindow;
+    public TMP_Text nameText;
+    public TMP_Text priceText;
+    public TMP_Text missionBonusReward;
 
-    public GameManager gameManager;
-
-    public TMP_Text moneyUIText;
-
-    public Button buyButton;
+    public CarScript previousSelectedCar;
 
 
+    LayerMask layerMask;
 
-    void Start()
+    void OnEnable()
     {
-        // Ensure only the active car has the TaxiScript enabled at the start
-        foreach (CarScript car in cars)
+        if (CarManager.instance == null)
         {
-            var taxiScript = car.GetComponent<TaxiScript>();
-            if (taxiScript != null)
-            {
-                taxiScript.enabled = (car == activeCar);
-            }
-        }
-
-        Debug.Log($"Scene initialized. Active car: {activeCar?.carName}");
-    }
-    public void ShowCarInfo(CarScript car)
-    {
-        carNameText.text = car.carName;
-        carPriceText.text = $"{car.price}";
-        buyButton.interactable = !car.isPurchased && gameManager.money >= car.price;
-        carInfoWindow.SetActive(true);
-        buyButton.onClick.RemoveAllListeners();
-        buyButton.onClick.AddListener(() => PurchaseCar(car));
-        
-    }
-
-    public void PurchaseCar(CarScript car)
-    {
-        if (gameManager.money >= car.price)
-        {
-            gameManager.money -= car.price;
-            UpdateMoneyUI();
-            car.isPurchased = true;
-            carPriceText.text = "Purchased";
-            buyButton.interactable = false;
-            carInfoWindow.SetActive(false);
-
-            SwitchActiveCar(car);
-        }
-    }
-
-    public void SwitchActiveCar(CarScript car)
-    {
-        if (car.isPurchased)
-        {
-            // Deactivate TaxiScript for all cars
-            foreach (CarScript c in cars)
-            {
-                var taxiScript = c.GetComponent<TaxiScript>();
-                if (taxiScript != null)
-                {
-                    taxiScript.enabled = false;
-                }
-            }
-
-            // Set the new active car
-            activeCar = car;
-
-            // Activate TaxiScript for the selected car
-            var activeTaxiScript = activeCar.GetComponent<TaxiScript>();
-            if (activeTaxiScript != null)
-            {
-                activeTaxiScript.enabled = true;
-            }
-
-            Debug.Log($"Active car switched to: {activeCar.carName}");
+            CarManager.instance = this;
         }
         else
         {
-            Debug.Log("Car not purchased. Cannot switch.");
+            Destroy(this);
         }
     }
 
-    /*public void SwitchActiveCar(CarScript car)
+    // Start is called before the first frame update
+    void Start()
     {
-        if (car.isPurchased)
-        {
-            if (activeCar != null)
-            {
-                activeCar.carModel.SetActive(false); // Deactivate current car
-            }
-            activeCar = car;
-            activeCar.carModel.SetActive(true); // Activate new car
-        }
-    }*/
-
-    private void UpdateMoneyUI()
-    {
-        moneyUIText.text = $"$ {gameManager.money}";
+        layerMask = LayerMask.GetMask("ground", "taxi");
     }
 
     void Update()
     {
-        if (Input.GetMouseButtonDown(0))
+        // Check if the mouse is over a UI element
+        if (EventSystem.current.IsPointerOverGameObject())
         {
-            if (EventSystem.current.IsPointerOverGameObject()) return;
+            return; // Do nothing if the mouse is over a UI element
+        }
 
+        if (Input.GetMouseButtonDown(0)) // Left mouse button click
+        {
             Ray mousePositionRay = mainCamera.ScreenPointToRay(Input.mousePosition);
-            if (Physics.Raycast(mousePositionRay, out RaycastHit hitInfo))
+            RaycastHit hitInfo;
+
+            if (Physics.Raycast(mousePositionRay, out hitInfo, Mathf.Infinity, layerMask))
             {
-                Debug.Log($"Raycast hit: {hitInfo.collider.gameObject.name}");
-                CarScript car = hitInfo.collider.GetComponent<CarScript>();
-                if (car != null)
+                Debug.Log("Raycast hit: " + hitInfo.collider.name);
+
+                if (hitInfo.collider.CompareTag("ground"))
                 {
-                    Debug.Log($"Car detected: {car.carName}");
-                    if (!car.isPurchased)
+                    // If we click on the ground, move the selected car (if any)
+                    if (selectedCar != null)
                     {
-                        ShowCarInfo(car); // Show car details when clicked
+                        Debug.Log("Moving car to: " + hitInfo.point);
+                        selectedCar.agent.SetDestination(hitInfo.point);
+                    }
+                    else
+                    {
+                        Debug.Log("No car selected to move.");
                     }
                 }
-                else
+                else if (hitInfo.collider.CompareTag("taxi"))
                 {
-                    Debug.Log("No CarScript detected on the hit object.");
+                    Debug.Log("Car clicked: " + hitInfo.collider.gameObject.name);
+                    SelectCar(hitInfo.collider.gameObject.GetComponent<CarScript>());
                 }
+            }
+            else
+            {
+                Debug.Log("Raycast did not hit anything.");
             }
         }
     }
 
-
-    public void CloseCarInfoWindow()
+    public void OpenCarInfoWindow()
     {
-        carInfoWindow.SetActive(false); // Hides the car info window
+        if (selectedCar == null) return;
+
+        nameText.text = selectedCar.carName;
+        priceText.text = "$" + selectedCar.carPrice;
+        missionBonusReward.text = "$" + selectedCar.missionBonusReward;
+
+        CarpopUpWindow.SetActive(true);
+
+
     }
 
+    public void SelectCar(CarScript car)
+    {
+        // Deselect all cars
+        foreach (CarScript c in cars)
+        {
+            c.selected = false;
+        }
+
+        CarClicked?.Invoke(car);
+
+        // Save the current car as previousSelectedCar
+        previousSelectedCar = selectedCar;
+
+        // Select the new car
+        selectedCar = car;
+        selectedCar.selected = true;
+        if (!car.isBought)
+        {
+            OpenCarInfoWindow();
+        }
+    }
+
+    public void ClosePopUpWindow()
+    {
+        CarpopUpWindow.SetActive(false);
+
+        // Set the previously active car as the current active
+        if (previousSelectedCar != null)
+        {
+            selectedCar = previousSelectedCar;
+            previousSelectedCar.selected = true;
+        }
+    }
+
+    public void BuyCar()
+    {
+        if(GameManager.instance.money >= CarManager.instance.selectedCar.carPrice)
+        {
+            GameManager.instance.money -= CarManager.instance.selectedCar.carPrice;
+            GameManager.instance.UpdateMoneyUI();
+            CarManager.instance.selectedCar.isBought = true;
+            CarpopUpWindow.SetActive(false);
+
+        }
+
+    }
+
+    
 }

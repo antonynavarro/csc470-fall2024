@@ -107,7 +107,7 @@ public class GameManager : MonoBehaviour
 
     public void StartMission()
     {
-        if (missionActive)
+        /*if (missionActive)
         {
             Debug.Log("Mission already active!");
             return;
@@ -117,7 +117,7 @@ public class GameManager : MonoBehaviour
         {
             Debug.Log("No unit selected to start the mission.");
             return;
-        }
+        }*/
 
         missionActive = true;
         popUpWindow.SetActive(false);
@@ -172,7 +172,10 @@ public class GameManager : MonoBehaviour
 
         // Add the unit's reward to money
         money += unit.reward;
+        money += CarManager.instance.selectedCar.missionBonusReward;
         UpdateMoneyUI();
+
+
 
         // Close the popup window and reset the selected unit
         ClosePopUpWindow();
@@ -252,4 +255,6 @@ public class GameManager : MonoBehaviour
         moneyUI.SetActive(true);
     }
 
+
+   
 }
