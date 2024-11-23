@@ -243,7 +243,7 @@ public class GameManager : MonoBehaviour
         DeselectUnit();
 
         popUpWindow.SetActive(false);
-        InfoUI.SetActive(true);
+        InfoUI.SetActive(false);
         moneyUI.SetActive(true);
     }
 
