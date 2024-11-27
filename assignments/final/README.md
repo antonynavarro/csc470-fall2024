@@ -1,4 +1,4 @@
-# Final Project: Taxi Driver (not definitive name)
+# Final Project: Taxi Game
 **Shamil Kalmatov, Antony Navarro**
 **CSC-470**  
 **Fall 2024**  
@@ -39,7 +39,7 @@ You lose if all you vehicules are destroyed
 ## Interface Sketches  
 1. **Main Menu**:  
    - Game title at the top.  
-   - A single “Start Game” button.  
+   - A “Start Game” button.  
 
 2. **Car Selection Pop-Up**:  
    - Displays car stats (speed, health points, visual).  
@@ -67,11 +67,11 @@ You are a hardworking taxi driver with a big dream: buying your dream car, a Lam
 
 ## Feature Set Targets  
 
-### 1. Low-Bar (Minimum Viable Product):  
+### 1. Low-Bar:  
 - Players can lose when they have no cars left to drive.  
 - Players can win by purchasing the Lamborghini, triggering a win screen.  
 
-### 2. Target (Expected Outcome):  
+### 2. Target:  
 - Fully functioning game mechanics, including:  
   - Traffic system.  
   - Mission acceptance and completion.  
@@ -79,7 +79,7 @@ You are a hardworking taxi driver with a big dream: buying your dream car, a Lam
   - Sound effects and music.  
   - Particule effects for collisions
 
-### 3. High-Bar (Stretch Goals):  
+### 3. High-Bar:  
 - Add additional challenges to increase difficulty (e.g., time-limited missions, restricted routes or cars).  
 - Introduce bonus items that provide special rewards or abilities.  
 
