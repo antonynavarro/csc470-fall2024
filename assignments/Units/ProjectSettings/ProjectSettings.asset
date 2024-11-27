@@ -734,7 +734,13 @@ PlayerSettings:
   XboxOneOverrideIdentityPublisher: 
   vrEditorSettings: {}
   cloudServicesEnabled:
+    Build: 0
+    Game Performance: 0
+    Legacy Analytics: 0
+    Purchasing: 0
+    UDP: 0
     UNet: 1
+    Unity Ads: 0
   luminIcon:
     m_Name: 
     m_ModelFolderPath: 
@@ -754,11 +760,11 @@ PlayerSettings:
   apiCompatibilityLevel: 6
   activeInputHandler: 0
   windowsGamepadBackendHint: 0
-  cloudProjectId: 650854ce-eba0-442b-96bf-6e7650dba49b
+  cloudProjectId: 62be0163-db68-458f-bda3-cbf21d528730
   framebufferDepthMemorylessMode: 0
   qualitySettingsNames: []
   projectName: 10-29-24
-  organizationId: mike-treanor
+  organizationId: poozy
   cloudEnabled: 0
   legacyClampBlendShapeWeights: 0
   hmiLoadingImage: {fileID: 0}
