@@ -1,14 +1,18 @@
-# Final Project: Taxi Driver Game  
-**Shamil Kalmatov, Antony Navarro**  
+# Final Project: Taxi Driver (not definitive name)
+**Shamil Kalmatov, Antony Navarro**
 **CSC-470**  
 **Fall 2024**  
 
 ---
 
 ## Gameplay Description  
-The player assumes the role of a taxi driver navigating an open-world city. The primary objective is to complete missions involving picking up passengers and delivering them to their destinations. Successful missions reward the player with money, which can be used to repair their vehicle or purchase new cars.
+The player is a taxi driver navigating an open-world city. The primary objective is to complete missions involving picking up passengers and delivering them to their destinations. Successful missions reward the player with money, which can be used to repair their vehicle or purchase new cars.
 
-The ultimate goal is to save enough money to buy a Lamborghini, the player’s dream car. To achieve this, players will complete various missions, upgrade their vehicles for better rewards, and avoid collisions with other vehicles, which can damage their car and incur repair costs.
+The ultimate goal is to save enough money to buy a Lamborghini, the player’s dream car. To achieve this, players will complete various missions, upgrade their vehicles for better rewards, and avoid collisions with other vehicles, which can damage their car and even destroy it.
+
+You win if when you buy the lambo
+
+You lose if all you vehicules are destroyed
 
 ---
 
@@ -19,13 +23,13 @@ The ultimate goal is to save enough money to buy a Lamborghini, the player’s d
 ---
 
 ## Visual Style  
-- **Perspective**: The camera is positioned overhead, providing a top-down view of the city and the player’s car.  
-- **Assets**: All objects and prefabs are created using the **Poly.pizza** asset pack for a cohesive low-poly style.  
+- **Perspective**: The camera is positioned overhead, giving a top-down view of the city and the player’s car.  
+- **Assets**: All the assets will come from **Poly.pizza** so that the game has a low poly style.  
 
 ---
 
 ## Audio Style  
-- **Background Music**: Upbeat and engaging background music to enhance gameplay.  
+- **Background Music**: Cool background music.  
 - **Sound Effects**:  
   - Engine sounds while driving.  
   - Collision sounds when the car crashes.  
@@ -38,16 +42,17 @@ The ultimate goal is to save enough money to buy a Lamborghini, the player’s d
    - A single “Start Game” button.  
 
 2. **Car Selection Pop-Up**:  
-   - Displays car stats (speed, health points, design).  
-   - Includes a button to confirm the purchase.  
+   - Displays car stats (speed, health points, visual).  
+   - Includes a button to confirm the purchase or decline. 
 
 3. **Mission Acceptance Screen**:  
    - Mission description and reward details.  
-   - Accept button.  
+   - Accept and Decline buttons.  
 
 4. **In-Game HUD**:  
    - **Health Meter**: Shows the car's health.  
    - **Money Counter**: Displays the player’s current balance.  
+   - **Main Menu Button** To go back to the main menu
 
 5. **Win/Lose Screens**:  
    - A win screen when the Lamborghini is purchased.  
@@ -70,11 +75,12 @@ You are a hardworking taxi driver with a big dream: buying your dream car, a Lam
 - Fully functioning game mechanics, including:  
   - Traffic system.  
   - Mission acceptance and completion.  
-  - Car upgrades with UI stats.  
+  - Car purchase with UI stats.  
   - Sound effects and music.  
+  - Particule effects for collisions
 
 ### 3. High-Bar (Stretch Goals):  
-- Add additional challenges to increase difficulty (e.g., time-limited missions, restricted routes).  
+- Add additional challenges to increase difficulty (e.g., time-limited missions, restricted routes or cars).  
 - Introduce bonus items that provide special rewards or abilities.  
 
 ---
@@ -87,15 +93,5 @@ You are a hardworking taxi driver with a big dream: buying your dream car, a Lam
 | **12/01**   | Implement traffic and expand the city.      |  
 | **12/06**   | Add the car health bar and Game Over screen.|  
 | **12/08**   | Add the repair/change car option.           |  
-| **12/08**   | Add main menu, sound effects, and music.    |  
-| **12/10**   | Fix bugs, finalize the report, and submit.  |  
-
----
-
-## Notes  
-- **Repository**: Upload this project to a GitHub repository named `final`.  
-- **Submission**: Ensure all project files and this `README.md` file are included in the repository.  
-
----
-
-Let me know if you need help with the GitHub setup or additional details for the README!
+| **12/10**   | Add main menu, sound effects, and music.    |  
+| **12/13**   | Fix bugs, finalize the report, and submit.  |  
