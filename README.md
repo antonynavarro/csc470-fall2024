@@ -4,13 +4,13 @@ These games are small personal projects I created for the **Game Programming** c
 
 ## Games
 
-### ✈️ [Flight Simulator](https://antonynavarro.github.io/csc470-fall2024/games/flight/)
+### ✈️ [Flight Sim](https://antonynavarro.github.io/csc470-fall2024/games/flight/)
 
 
 ### 🧬 [Conway's Game of Life: 1v1 Edition](https://antonynavarro.github.io/csc470-fall2024/games/emergence/)
 
 
-### 🎮 [Platformer Adventure](https://antonynavarro.github.io/csc470-fall2024/games/platformer/)
+### 🎮 [Platformer](https://antonynavarro.github.io/csc470-fall2024/games/platformer/)
 
 
 ### 🚕 [Taxi Game](https://antonynavarro.github.io/csc470-fall2024/games/final/)
